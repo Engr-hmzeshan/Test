@@ -32,9 +32,22 @@ function Header({ user }) {
         <div className="position-absolute top-0 end-0">
           <ul className="ms-auto navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item me-2">
-              <Link className="nav-link" to="/login">
-                {user ? user.name : "Login"}
-              </Link>
+              {user ? (
+                <>
+                  <ul className="list-group list-group-horizontal">
+                    <Link to="/" className="list-group-item">
+                      {user.name}
+                    </Link>
+                    <Link to="/logout" className="list-group-item">
+                      Logout
+                    </Link>
+                  </ul>
+                </>
+              ) : (
+                <Link className="nav-link" to="/login">
+                  Login{" "}
+                </Link>
+              )}
             </li>
             <li className="nav-item">
               {user ? (

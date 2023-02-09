@@ -5,7 +5,7 @@ const categories = require("./data/categories");
 require("dotenv").config({ path: "./config.env" });
 require("./startup/db")();
 
-const seedProducts = async () => {
+const seedCategories = async () => {
   try {
     await Category.deleteMany();
     console.log("Category are deleted");
@@ -19,4 +19,4 @@ const seedProducts = async () => {
   }
 };
 
-seedProducts();
+seedCategories();

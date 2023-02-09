@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const { Schema } = mongoose;
 
-const carSchema = new Schema({
+const vehicleSchema = new Schema({
   category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
+    type: String,
     required: true,
   },
   color: {
@@ -23,17 +22,17 @@ const carSchema = new Schema({
   registrationNo: {
     type: String,
     required: true,
-    unique: true,
   },
 });
 
-const Car = mongoose.model("Car", carSchema);
-module.exports.Car = Car;
+const Vehicle = mongoose.model("Vehicles", vehicleSchema);
+module.exports.Vehicle = Vehicle;
 module.exports.validate = validate;
 
 // Validate
 function validate(req) {
   const schema = Joi.object({
+    category: Joi.string().required(),
     color: Joi.string().required(),
     model: Joi.string().required(),
     make: Joi.string().required(),

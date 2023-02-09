@@ -40,7 +40,7 @@ function Login() {
 
       // When user register it automatically login and page reload fro re-rendering.
       setTimeout(() => {
-        window.location = "/another";
+        window.location = "/vehicles";
       }, 2000);
     } catch (ex) {
       const error = { ...errors };
@@ -97,7 +97,7 @@ function Login() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="container shadow-lg p-4 mt-5 w-50 ">
+        <div className="container position-relative  shadow-lg p-4 mt-5 w-50 ">
           <h3 className=" text-start">Login</h3>
           <hr />
           <Input
@@ -121,11 +121,13 @@ function Login() {
           <div className="mb-3 row">
             <button className="btn btn-outline-success">Login</button>
           </div>
+          <div className="position-absolute bottom-0 end-0">
+            <Link className="align-end text-muted" to="/register">
+              New User ?
+            </Link>
+          </div>
         </div>
       </form>
-      <Link className="float-end  text-muted" to="/register">
-        New User ?
-      </Link>
     </>
   );
 }

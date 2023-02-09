@@ -1,0 +1,37 @@
+[
+  {
+    "category": "Sedan",
+    "color": "Blue",
+    "model": "Toyota",
+    "make": "2011",
+    "registrationNo": "ASDAD201"
+  },
+  {
+    "category": "Hatchback",
+    "color": "Silver",
+    "model": "Ford",
+    "make": "2017",
+    "registrationNo": "EWREWR247"
+  },
+  {
+    "category": "SUV",
+    "color": "Gold",
+    "model": "Lamb",
+    "make": "2019",
+    "registrationNo": "POYI4564"
+  },
+  {
+    "category": "Bus",
+    "color": "Orange",
+    "model": "Heavy",
+    "make": "2020",
+    "registrationNo": "MNDA456"
+  },
+  {
+    "category": "Bus",
+    "color": "Red",
+    "model": "Heavy",
+    "make": "2021",
+    "registrationNo": "GFDD456"
+  }
+]
