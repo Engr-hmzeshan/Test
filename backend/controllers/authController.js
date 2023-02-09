@@ -47,7 +47,7 @@ module.exports.signupUser = async function (req, res, next) {
     .header("x-auth-token", token)
     .json({
       success: true,
-      message: `Email sent to ${user.email} successfully`,
+      message: `An email sent to: ${user.email} successfully for login password.`,
       user: _.pick(user, ["name", "email"]),
     });
 };
@@ -78,8 +78,5 @@ module.exports.loginUser = async function (req, res, next) {
   // generate token
   const token = user.generateAuthToken();
 
-  res.status(200).json({
-    success: true,
-    token,
-  });
+  res.status(200).send(token);
 };
