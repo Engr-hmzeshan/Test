@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { paginate } from "../utils/paginate";
 import { Link } from "react-router-dom";
+import Pagination from "react-js-pagination";
+import { resultPerPage } from "../../config.json";
 import Joi from "joi";
 import Input from "./common/input";
 import Select from "./common/select";
@@ -12,7 +15,9 @@ import {
 const Vehicles = () => {
   // Hooks
   const [vehicles, setVehicles] = useState([]);
+  const [count, setCount] = useState(vehicles.length);
   const [errors, setErrors] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
   const [vehicle, setVehicle] = useState({
     registrationNo: "",
     category: "",
@@ -23,15 +28,21 @@ const Vehicles = () => {
   const { registrationNo, category, color, model, make } = vehicle;
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [currentPage, count]);
   // Handlers
   async function fetchData() {
     const { success, vehicles: data } = await getAllVehicles();
     if (success) {
-      setVehicles(data);
+      const result = paginate(data, currentPage, resultPerPage);
+      setVehicles(result);
+      setCount(data.length);
     }
   }
   // Handlers
+  function setCurrentPageNo(pageNumber) {
+    console.log(pageNumber);
+    setCurrentPage(pageNumber);
+  }
   // Validate Form before submitting
   const validate = () => {
     const schema = Joi.object({
@@ -104,6 +115,7 @@ const Vehicles = () => {
     const { success, message } = await vehicleDeleted(id);
     if (success) {
       toast.info(message);
+      window.location.reload();
     }
   };
   return (
@@ -229,6 +241,22 @@ const Vehicles = () => {
                   })}
               </tbody>
             </table>
+            <div className="row justify-content-right">
+              <div className="col">
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  totalItemsCount={count}
+                  onChange={setCurrentPageNo}
+                  nextPageText={"Next"}
+                  prevPageText={"Prev"}
+                  firstPageText={"First"}
+                  lastPageText={"Last"}
+                  itemClass="page-item"
+                  linkClass="page-link"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

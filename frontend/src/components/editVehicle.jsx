@@ -63,7 +63,9 @@ const EditVehicle = () => {
       console.log(success);
       if (success) {
         toast.success(message);
-        window.location = "/vehicles";
+        setTimeout(() => {
+          window.location = "/vehicles";
+        }, 2000);
       }
     } catch (error) {
       toast.error(error.response.data.errMessage);

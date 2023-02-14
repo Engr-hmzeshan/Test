@@ -30,10 +30,14 @@ module.exports.addVehicle = async function (req, res) {
 // Get all vehicles
 module.exports.getAllVehicles = async function (req, res) {
   const vehicles = await Vehicle.find();
+  const resPerPage = 4;
+  const vehicleCount = await Vehicle.countDocuments();
 
   res.status(200).json({
     success: true,
     vehicles,
+    vehicleCount,
+    resPerPage,
   });
 };
 // Get vehicle by id
